@@ -1,0 +1,14 @@
+
+.nav-bar-tabs-cls ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;;
+    background-color: brown;
+    padding: 30px;
+    ;
+}
+
+.nav-bar-tabs-cls ul li a{
+    text-decoration: none;
+}

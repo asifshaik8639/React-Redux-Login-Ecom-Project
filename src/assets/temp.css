@@ -1,0 +1,60 @@
+.temp-page-container {
+    border: 1px solid wheat;
+    background-color: wheat;
+    width: 100%;
+    height: 100vh;
+}
+
+.temp-page-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.temp-page-container .wip-container {
+    position: relative;
+}
+
+.wip-container label {
+    font-size: 20px;
+}
+
+.wip-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;;
+}
+
+.wip-note {
+    color: brown;
+    bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    top: -40px;
+}
+
+.horizontal-list-container {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.grid-wrapper {
+    display: flex;
+    width: 75vw;;
+    overflow: auto;
+
+}
+
+
+.grid-wrapper .list-item {
+   padding:10px;
+   margin:5px;
+   background-color: white;
+   border: 1px solid greenyellow;
+   border-radius: 10px;;
+   color: red;
+   z-index: 1500;
+}
