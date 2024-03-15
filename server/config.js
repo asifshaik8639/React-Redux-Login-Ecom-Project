@@ -21,11 +21,19 @@ const twilio = {
  userPhone:  '' // Replace with the user's phone number
 }
 
+const mySQLDatabase = {
+ host: '',
+ user: '',
+ password: '',
+ database: ''
+};
+
 // Exporting Configuration
 export const config = {
   server,
   database,
-  twilio
+  twilio,
+  mySQLDatabase
   // Other Configuration Parameters...
 };
 

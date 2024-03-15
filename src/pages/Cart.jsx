@@ -25,7 +25,7 @@ const Cart = () => {
     },[cartListsOfProducts]);
 
     const onGoToCheckoutClickHandler = (event) => {
-      dispatch(setSelectedPage("User"));
+      dispatch(setSelectedPage("Checkout"));
     }
 
     const onContinueShoppingClickHandler = (event) => {
@@ -45,7 +45,12 @@ const Cart = () => {
       {
          
           <div key='cart-list-data' className='prodDetailsContainer'>
-            <h2>Cart Details</h2>
+
+            <div className='image-position-container-cls'>
+              <div className='header-container background-for-search-bar'></div>
+              <h2 className='image-label-cls'>Cart Details </h2>
+            </div>
+
             {
                 !!productCartList && productCartList?.map((item, index) => {
                 return  <div className='flex-item-cls cart-item'

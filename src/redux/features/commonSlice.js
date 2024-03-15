@@ -4,7 +4,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isLoggedIn: false,
   theme: 'light',
-  selectedPage: null
+  selectedPage: null,
+  userProfileData: null,
+  userProfileError: false // user profile is common hence moved here
 };
 
 const commonSlice = createSlice({
@@ -21,6 +23,13 @@ const commonSlice = createSlice({
     setTheme: (state, action) => {
       state.theme = action.payload;
     },
+    setUserProfile: (state, action) => {
+      state.userProfileData = action.payload;
+      state.userProfileError = false;
+    },
+    setUserProfileError: (state, action) => {
+      state.userProfileError = true;
+    },
     resetCommonState: (state) => {
       // Reset to the initial state
       return { ...state, ...initialState };
@@ -30,7 +39,9 @@ const commonSlice = createSlice({
 
 export const { setLoggedIn, 
               setTheme, 
-              setSelectedPage, 
+              setSelectedPage,
+              setUserProfile,
+              setUserProfileError, 
               resetCommonState } = commonSlice.actions;
 export const selectCommonState = (state) => state.common;
 export default commonSlice.reducer;

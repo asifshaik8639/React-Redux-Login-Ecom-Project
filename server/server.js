@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { authRoutes } from './routes/authRoutes.js';
+import { userRoutes } from './routes/userRoutes.js'; 
 import { config } from './config.js';
 
 
@@ -16,6 +17,8 @@ app.use(cors({
 
 // Connect routes
 app.use('/auth', authRoutes.router);
+
+app.use('/user', userRoutes.router);
 
 app.listen(PORT, '127.0.0.1', 'localhost',  () => {
     console.log(`Server is running on http://127.0.0.1:${PORT}`);

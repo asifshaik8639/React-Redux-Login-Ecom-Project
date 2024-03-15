@@ -10,6 +10,7 @@ import Cart from './Cart';
 import WIP from './WIP';
 import Movies from './Movies';
 import ProductDetails from './ProductDetails';
+import Checkout from './Checkout';
 import {setSelectedPage} from '../redux/features/commonSlice';
 
 const HomeComponent = () => <Home/>;
@@ -20,6 +21,7 @@ const CartComponent = () => <Cart/>;
 const WIPComponent = () => <WIP/>;
 const MoviesComponent = () => <Movies/>;
 const ProductDetailsComponent = () => <ProductDetails/>;
+const CheckoutComponent = () => <Checkout/>;
 
 const componentMap = {
     Home: HomeComponent,
@@ -29,7 +31,8 @@ const componentMap = {
     Cart: CartComponent,
     Movies: MoviesComponent,
     WIP: WIPComponent,
-    prodDetails: ProductDetailsComponent
+    prodDetails: ProductDetailsComponent,
+    Checkout: CheckoutComponent
 };
 
 

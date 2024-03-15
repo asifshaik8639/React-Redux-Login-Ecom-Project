@@ -126,6 +126,7 @@ body {
   .flabel-container {
     display: flex;
     flex-direction: column;
+    overflow: unset;
   }
 
 }
@@ -402,7 +403,7 @@ body {
 }
 
 .background-for-search-bar {
-  background-image: url('./assets/banner-svg');
+  background-image: url('./assets/banner.svg');
   background-size: cover; /* Adjusts the size of the background image */
   background-position: center; /* Centers the background image */
   height: 100px; /* Set a height for the div */
@@ -459,8 +460,6 @@ body {
 .prodDetailsContainer {
   display: flex;
   flex-direction: column;
-  background-color: brown;
-  padding:25px;
 
 }
 
@@ -494,6 +493,21 @@ body {
   font-weight: bold;
   padding: 20px;
 }
+
+.image-position-container-cls {
+  position: relative;
+}
+
+.image-position-container-cls .image-label-cls {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 100;
+}
+
+
+
 
 
 

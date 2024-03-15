@@ -1,0 +1,25 @@
+
+
+.userProfileParentContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.userProfileDetailsContainer {
+    border: 1px solid wheat;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 15px;
+    text-align: left;
+}
+
+ h2 {
+    text-align: center;
+}
+
+.userProfileDetailsContainer .user-profile-item-cls {
+    
+    padding: 10px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+}
