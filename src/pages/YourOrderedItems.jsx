@@ -24,6 +24,18 @@ const YourOrderedItems = () => {
     setActiveTab(<ComponentToLoad />);
   };
 
+  const onOrderUnderDispatchClickHandler = (event) => {
+      //TODO:
+  };
+
+  const onReadyToDeliveryClickHandler = (event) => {
+     //TODO:
+  };
+
+  const onDeliveredClickHandler = (event) => {
+     //TODO:
+  };
+
   console.log(`in lazy loading of YourOrderedItems component`);
 
   return (
@@ -36,21 +48,21 @@ const YourOrderedItems = () => {
           <ul>
             <li>
               <Link name="DispatchedOrderedItems" className='prod-details-btns-Container'  onClick={(e) => handleTabClick(e)}>
-                  <button onClick={(e) => onContinueShoppingClickHandler(e)} >
+                  <button onClick={(e) => onOrderUnderDispatchClickHandler(e)} >
                       Order Under Dispatch
                   </button>
               </Link>
             </li>
             <li>
               <Link  name="ReadyToDelivery" className='prod-details-btns-Container'  onClick={(e) => handleTabClick(e)}>
-                  <button onClick={(e) => onContinueShoppingClickHandler(e)} >
+                  <button onClick={(e) => onReadyToDeliveryClickHandler(e)} >
                       Ready to Delivery
                   </button>
               </Link>
             </li>
             <li>
               <Link  name="Delivered" className='prod-details-btns-Container' onClick={(e) => handleTabClick(e)}>
-                  <button onClick={(e) => onContinueShoppingClickHandler(e)} >
+                  <button onClick={(e) => onDeliveredClickHandler(e)} >
                       Delivered
                   </button>
               </Link>

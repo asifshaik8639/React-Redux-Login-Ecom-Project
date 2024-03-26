@@ -14,6 +14,10 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {resetAllSliceStates} from '../redux/store';
 import Avatar from '@mui/material/Avatar';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
+import Button from "@mui/material/Button";
 
 
 function SideDrawer({onIconClickHandler}) {
@@ -22,6 +26,9 @@ function SideDrawer({onIconClickHandler}) {
   const dispatch = useDispatch();
 
   const [cartItemsCount, setCartItemsCount] = useState(0);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
+
 
   const { isLoggedIn } = useSelector((state) => state.common);
 
@@ -34,9 +41,19 @@ function SideDrawer({onIconClickHandler}) {
 
 //    },[totalCartItemsCount]);
 
-  const onLogoutClickHandler = () => {
+  const onLogoutDialogOpenClickHandler = (event) => {
     //resetting all the state to the default state 
+    setDialogOpen(true);
+  };
+
+  const onLogoutClickHandler = (event) => {
+    //resetting all the state to the default state 
+    setDialogOpen(false);
     dispatch(resetAllSliceStates());
+  };
+
+  const handleLogoutDialogClose = (event) => {
+    setDialogOpen(false);
   };
 
   useEffect(() => {
@@ -96,11 +113,29 @@ function SideDrawer({onIconClickHandler}) {
         </div>
 
         <div className='side-drawer-item'>
-            <Link name="Logout"  onClick={(e) => onLogoutClickHandler(e) }>
+            <Link name="Logout"  onClick={(e) => onLogoutDialogOpenClickHandler(e) }>
                 <LogoutIcon fontSize='large'/>
                 <label htmlFor=""> Logout</label>
             </Link>
         </div>
+
+        <Dialog
+            open={dialogOpen}
+            onClose={(e) => handleLogoutDialogClose(e)}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+        <DialogTitle id="alert-dialog-title">
+          {"Are you sure you want to Exit?"}
+        </DialogTitle>
+
+        <DialogActions>
+          <Button onClick={(e) => handleLogoutDialogClose(e)}>No</Button>
+          <Button onClick={(e) => onLogoutClickHandler(e)} autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+        </Dialog>
 
 
         

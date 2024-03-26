@@ -565,6 +565,17 @@ body {
   justify-content: center;
 }
 
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded {  
+  background-color: wheat;
+  border-radius: 25px;
+  color: black;
+}
+
+.MuiButtonBase-root.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  color: black;
+  font-weight: bold;
+}
+
 
 
 
