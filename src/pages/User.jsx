@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfileData } from '../redux/actions/getUserProfileData';
 import {setSelectedPage} from '../redux/features/commonSlice'; 
 import '../assets/user-profile.css';
+import Avatar from '@mui/material/Avatar';
+
 
 const User = () => {
   const dispatch = useDispatch();
@@ -38,6 +40,8 @@ const User = () => {
     //     onClick={(e) => onContinueShoppingClickHandler(e)}>
     //    <WIP/>
     // </div>
+
+    //React-Redux-Ecom-Project/src/assets/avatar.jpg
     <>
     {
       <div className='userProfileParentContainer'>
@@ -48,6 +52,10 @@ const User = () => {
         </div>
 
           <div key='user-list-data' className='userProfileDetailsContainer'>
+            {
+                    <Avatar alt="Asif Shaik" className='avatar-img-cls'  
+                    sx={{ width: 100, height: 100 }} />
+            }
             {
                 !!userProfileResponse &&
                 Object.entries(userProfileResponse).map(([key, value]) => {

@@ -43,11 +43,19 @@ const ProductDetails = () => {
   return (
     <>
         {
+            <div key='cart-list-data' className='prodDetailsContainer'>
+            <div className='image-position-container-cls'>
+                <div className='header-container background-for-search-bar'></div>
+                <h2 className='image-label-cls'>Product Details </h2>
+            </div>
+            </div>
+
+        }
+        {
             !!product &&  
             <div key='prod-data' className='prodDetailsContainer'>
                 {
-                    <div>
-                        <h2>Product Details</h2>
+                    <div className='prod-details-page-cls'>
                         <div className='flex-item-cls prod-details-item-cls'
                             key={`flex-item`}  >
 
@@ -70,21 +78,23 @@ const ProductDetails = () => {
             </div>
         }
         {
-            <div className='product-additional-details-cls flex-item-cls'>
-                <h2>Product Additional Details</h2>
-                <div className='product-details-cls'
-                    key={`product-category`} >
-                    {`Category: ${product?.category}`}
-                </div>
+            <div className='prod-details-page-cls'>
+                <div className='product-additional-details-cls flex-item-cls'>
+                    <h2>Product Additional Details</h2>
+                    <div className='product-details-cls'
+                        key={`product-category`} >
+                        {`Category: ${product?.category}`}
+                    </div>
 
-                <div className='product-details-cls'
-                    key={`product-description`} >
-                    {`Description: ${product?.description}`}
-                </div>
+                    <div className='product-details-cls product-description-cls'
+                        key={`product-description`} >
+                        {`Description: ${product?.description}`}
+                    </div>
 
-                <div className='product-details-cls'
-                    key={`product-reviews`} >
-                    {`Ratings: ${product?.rating?.rate || 0}`}
+                    <div className='product-details-cls'
+                        key={`product-reviews`} >
+                        {`Ratings: ${product?.rating?.rate || 0}`}
+                    </div>
                 </div>
             </div>
         }

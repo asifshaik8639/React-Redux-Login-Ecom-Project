@@ -6,11 +6,15 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShopIcon from '@mui/icons-material/Shop';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
+import StoreIcon from '@mui/icons-material/Store';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { CDN_IMAGE_URL } from  '../utils/Constants' ;// '../utils/Constants';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom'; 
 import { useDispatch, useSelector } from 'react-redux';
 import {resetAllSliceStates} from '../redux/store';
+import Avatar from '@mui/material/Avatar';
+
 
 function SideDrawer({onIconClickHandler}) {
 
@@ -52,7 +56,9 @@ function SideDrawer({onIconClickHandler}) {
         </div>
         <div className='side-drawer-item'>
             <Link name="Home" onClick={(e) => onIconClickHandler(e) } >
-                <ShopIcon fontSize='large' />
+           
+                <StoreIcon fontSize='large' />
+                
                 <label htmlFor=""> Shopping</label> 
             </Link>
         </div>
@@ -76,16 +82,16 @@ function SideDrawer({onIconClickHandler}) {
         </div>
 
         <div className='side-drawer-item'>
-            <Link name="User"  onClick={(e) => onIconClickHandler(e) }>
-                <ContactsIcon fontSize='large'/>
-                <label htmlFor=""> User Profile</label>
+            <Link name="YourOrderedItems"  onClick={(e) => onIconClickHandler(e) }>
+                <ShoppingBasketIcon fontSize='large'/>
+                <label htmlFor=""> Your Orders</label>
             </Link>
         </div>
 
         <div className='side-drawer-item'>
-            <Link name="Settings"  onClick={(e) => onIconClickHandler(e) }>
-                <SettingsIcon fontSize='large'/>
-                <label htmlFor=""> Settings</label>
+            <Link name="User"  onClick={(e) => onIconClickHandler(e) }>
+                <ContactsIcon fontSize='large'/>
+                <label htmlFor=""> User Profile</label>
             </Link>
         </div>
 

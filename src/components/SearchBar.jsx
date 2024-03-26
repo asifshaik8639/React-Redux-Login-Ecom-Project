@@ -37,12 +37,12 @@ function SearchBar({ sendinputTextVal,
                      id="search"
                      onInput={(e) => onInputSearchHandler(e)} />
 
-             <Icon style={{ fontSize: 30, color: 'black', padding:5 }} 
+             <Icon style={{ fontSize: 30, color: 'black' }} 
                    onClick={(e) => onSortHandler(true)}>
                  <ArrowCircleUpIcon className='icon-up-cls' />
              </Icon>
 
-             <Icon style={{ fontSize: 30, color: 'black', padding:5 }}
+             <Icon style={{ fontSize: 30, color: 'black' }}
                    onClick={(e) => onSortHandler(false)} >
                  <ArrowCircleDownIcon className='icon-down-cls'/>
              </Icon>

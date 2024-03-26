@@ -1,6 +1,6 @@
 const users = [
-    { id: 1, username: 'asif.shaik9032@gmail.com', password: 'test$1234' },
-    { id: 2, username: 'shaikasif', password: 'test2' },
+    { id: 1, username: '', password: '' },
+    { id: 2, username: '', password: '' },
     // Add more users as needed
   ];
   

@@ -32,11 +32,18 @@ body {
 
 
 .prodcut-title-cls {
-  text-align: center;
+  /* text-align: center;
   padding: 20px;
   font-weight: bold;
   width: 200px;
   height: 180px;
+  text-overflow: ellipsis; */
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  width: 200px;
+  height: 180px;
+  margin: 10px;
   text-overflow: ellipsis;
 }
 
@@ -47,6 +54,9 @@ body {
   margin: 25px;
   align-self: center;
   text-align: center;
+  
+  width: 250px;
+  height: 550px;
 }
 
 .prodcut-price-cls {
@@ -122,12 +132,22 @@ body {
   padding: 15px;
 }
 
+.flabel-container.align-center-cls h3{
+  padding-top: 10px;
+}
+
 @media screen and (max-width: 600px) {
   .flabel-container {
     display: flex;
     flex-direction: column;
     overflow: unset;
   }
+
+  .flabel-container.align-center-cls h3{
+    text-align: center;
+  }
+
+
 
 }
 
@@ -170,12 +190,12 @@ body {
   overflow: auto;
 }
 
-.category-container h4 {
+.category-container h3 {
   padding: 10px;
 }
 
 @media screen and (max-width: 600px) {
-  .category-container h4 {
+  .category-container h3 {
     text-align: center;
   }
 }
@@ -399,7 +419,14 @@ body {
 }
 
 .movie-item-cls {
+  border: 1px solid wheat;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 25px;
+  align-self: center;
+  text-align: center;
   height: 350px;
+  width: 230px;
 }
 
 .background-for-search-bar {
@@ -407,6 +434,17 @@ body {
   background-size: cover; /* Adjusts the size of the background image */
   background-position: center; /* Centers the background image */
   height: 100px; /* Set a height for the div */
+}
+
+.avatar-img-cls {
+  background-image: url('./assets/avatar.jpg');
+  background-size: cover; /* Adjusts the size of the background image */
+  background-position: center; /* Centers the background image */
+  margin: auto;
+}
+
+.avatar-img-cls .css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback {
+  visibility: hidden;
 }
 
 .side-drawer-cdn-bg-image {
@@ -484,14 +522,21 @@ body {
 
 
 .prodDetailsContainer .remove-cart-item-cls {
-  position: relative;
+  /* position: relative;
   top: 8px;
   left: -64px;
   text-decoration: underline dotted white;
   color: white;
   font-size: 15px;
   font-weight: bold;
-  padding: 20px;
+  padding: 20px; */
+  text-decoration: underline dotted white;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 40px;
+  display: block;
+  text-align: center;
 }
 
 .image-position-container-cls {
@@ -499,15 +544,26 @@ body {
 }
 
 .image-position-container-cls .image-label-cls {
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  z-index: 100;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    text-wrap: nowrap;
 }
 
+.product-details-cls.product-description-cls {
+  height: 250px;
+  overflow: auto;
+  padding: 10px;
+  width: 100%;
+  overflow-wrap: break-word;
+}
 
-
+.prod-details-page-cls {
+  display: flex;
+  justify-content: center;
+}
 
 
 

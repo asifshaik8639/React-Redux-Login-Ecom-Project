@@ -14,6 +14,8 @@ import commonReducer, {resetCommonState} from './features/commonSlice';
 
 import ProductDetailsSliceReducer, {resetProductDetailsState} from './features/ProductDetailsSlice';
 
+import PaymentProcessReducer, {resetPaymentProcessState} from './features/PaymentProcessSlice';
+
 import loggingMiddleware from './middleware/loggingMiddleware';
 
 import errorHandlingMiddleware from './middleware/errorHandlingMiddleware';
@@ -31,8 +33,8 @@ export const store = configureStore({
     verifyOTP: verifyOTPReducer,
     common: commonReducer,
     productsCart: productsCartReducer,
-    productDetails: ProductDetailsSliceReducer
-    
+    productDetails: ProductDetailsSliceReducer,
+    paymentProcess: PaymentProcessReducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk, 
                                                                       loggingMiddleware,
@@ -46,5 +48,6 @@ export const resetAllSliceStates = () => (dispatch) => {
   dispatch(resetVerifyOTPState());
   dispatch(resetCartState());
   dispatch(resetProductDetailsState());
+  dispatch(resetPaymentProcessState());
   // ... dispatch reset actions for other slices
 };

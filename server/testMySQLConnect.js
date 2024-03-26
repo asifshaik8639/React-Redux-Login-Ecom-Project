@@ -1,12 +1,12 @@
 import mysql from 'mysql2';
-//import { Config } from '';
+import { config } from '../server/config.js';
 
 // Create connection
 const connection = mysql.createConnection({
-  host: '',
-  user: '',
-  password: '',
-  database: ''
+  host: config.mySQLDatabase.host,
+  user: config.mySQLDatabase.user,
+  password: config.mySQLDatabase.password,
+  database: config.mySQLDatabase.database
 });
 
 // Use connection

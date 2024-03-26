@@ -11,14 +11,14 @@ import Movies from './pages/Movies';
 import Login from './pages/Login';
 import ProductDetails from './pages/ProductDetails';
 
-const LazyLoadedSettingsComponent = lazy(() => import('./pages/Settings'));
+const LazyLoadedOrdersComponent = lazy(() => import('./pages/YourOrderedItems'));
 
 function App() {
   
   return(
     <>
       <PaginationContextWrapper>
-      <Suspense fallback={<div>Loading settings component...</div>}>
+      <Suspense fallback={<div>Loading ...</div>}>
         <Routes>
           <Route path="/home" element={<DynamicParentContainer></DynamicParentContainer>}></Route>
           <Route path="/user" element={<User></User>}></Route>
@@ -26,7 +26,7 @@ function App() {
           {/* default case */}
           <Route path="/" element={ <Navigate to="/login" />}></Route>
           <Route path="/cart" element={<Cart></Cart>}></Route>
-          <Route path="/settings" element={LazyLoadedSettingsComponent}></Route>
+          <Route path="/YourOrderedItems" element={LazyLoadedOrdersComponent}></Route>
           <Route path="/wip" element={<WIP></WIP>}></Route>
           <Route path="/movies" element={<Movies></Movies>}></Route> 
           {/* <Route path="/prodDetails" element={<ProductDetails></ProductDetails>}></Route>            */}

@@ -15,3 +15,12 @@ export const CDN_IMAGE_URL = 'https://cdn.discordapp.com/assets/profile_effects/
 
 export const QR_CODE_ALT_NOTE = 'If you are facing any issues with the OTP, as an alternate you can scan the below QRCode to get the OTP to login.';
 
+export const RAZOR_PAY_KEY_ID = 'rzp_test_7Ki2UaYoN5vrSk';
+
+export const PAYMENT_IN_CURRENCY = 'INR';
+
+export const PAYMENT_PREFILL_DATA = {
+  NAME: 'Asif Shaik',
+  EMAIL: 'asif.testshaik@gmail.com'
+}
+

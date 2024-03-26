@@ -1,14 +1,22 @@
-
 .nav-bar-tabs-cls ul {
     list-style-type: none;
     display: flex;
-    justify-content: space-between;
-    margin: 20px;;
-    background-color: brown;
-    padding: 30px;
-    ;
+    flex-direction: row;
+    margin: 10px;
+    padding: 10px;
+    justify-content: center;
 }
 
 .nav-bar-tabs-cls ul li a{
     text-decoration: none;
+}
+
+
+.ordered-items-cls, .no-cart-items-cls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50% 0%;
+    font-weight: bold;
+    height: 50vh;
 }

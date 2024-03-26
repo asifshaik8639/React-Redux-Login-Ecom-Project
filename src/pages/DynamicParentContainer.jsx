@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Home from './Home';
 import NotFound from './NotFound';
 import User from './User';
-import Settings from './Settings';
+import YourOrderedItems from './YourOrderedItems';
 import Cart from './Cart';
 import WIP from './WIP';
 import Movies from './Movies';
@@ -16,7 +16,7 @@ import {setSelectedPage} from '../redux/features/commonSlice';
 const HomeComponent = () => <Home/>;
 const NotFoundComponent = () => <NotFound/>;
 const UserComponent = () => <User/>;
-const SettingsComponent = () => <Settings/>;
+const YourOrderedItemsComponent = () => <YourOrderedItems/>;
 const CartComponent = () => <Cart/>;
 const WIPComponent = () => <WIP/>;
 const MoviesComponent = () => <Movies/>;
@@ -27,7 +27,7 @@ const componentMap = {
     Home: HomeComponent,
     NotFound: NotFoundComponent,
     User: UserComponent,
-    Settings: SettingsComponent,
+    YourOrderedItems: YourOrderedItemsComponent,
     Cart: CartComponent,
     Movies: MoviesComponent,
     WIP: WIPComponent,

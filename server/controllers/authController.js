@@ -17,9 +17,9 @@ const mongoDBConnect = async () => {
 
     // Create a document to insert
     const doc = {
-      title: "LoginTest",
-      username: "asif.shaik9032@gmail.com",
-      password: "as$1234"
+      title: "",
+      username: "",
+      password: ""
     }
     // Insert the defined document into the "haiku" collection
     const result = await collection.insertOne(doc);

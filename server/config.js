@@ -28,12 +28,18 @@ const mySQLDatabase = {
  database: ''
 };
 
+const razorPaymentGateway = {
+  key_id: '',
+  key_secret: ''
+};
+
 // Exporting Configuration
 export const config = {
   server,
   database,
   twilio,
-  mySQLDatabase
+  mySQLDatabase,
+  razorPaymentGateway
   // Other Configuration Parameters...
 };
 

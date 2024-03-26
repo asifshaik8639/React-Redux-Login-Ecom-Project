@@ -31,6 +31,8 @@ This is a comprehensive README file for the MERN Stack E-commerce application, d
 - **Security**: Sensitive data is stored in configuration files and .env files for adherence to security standards.
 - **OTP Integration**: Uses speakeasy library for OTP generation and QRCode library for generating QR codes.
 - **SMS Integration**: Utilizes Twilio for sending OTP via SMS.
+- **RazorPay Webhook Integration**: Integration with RazorPay Webhook along with the paymentGateway for seamless realtime checkout and payment confirmation.
+
 
 ## Product Features
 - **Product Search**: Users can search for products by name.
@@ -41,11 +43,11 @@ This is a comprehensive README file for the MERN Stack E-commerce application, d
 - **Navigation**: Users can navigate between Home, Cart, and Checkout pages seamlessly.
 - **Movies**: Users can browse and filter movies from around the world.
 - **Movie Trailers**: View trailers of selected movies.
+- **Payment Gateway Integration**:  Integration with a payment gateway for purchasing products.
 - **Logout**: Users can log out of the application.
 
 ## Pending Features
-- **Movie Cart Integration**: Adding movies to the cart section.
-- **Payment Gateway Integration**: Pending integration with a payment gateway for purchasing products.
+- **Movie Cart Integration**: Adding movies to the cart section.As I don’t have the license to sell it to others. Only trailers of all the movies around the world (including the new coming) can be seen
 
 ## Setup Instructions
 ### Prerequisites
@@ -82,6 +84,12 @@ This is a comprehensive README file for the MERN Stack E-commerce application, d
         );
         ```
 
+ ## Note ** (IMP): 
+    Due to security issues/limitations I have not provided the following details/Tables. You should setup these on your own and provide these details in the config file to be able to run the application
+        - You should setup your own databases (MongoDB and MySQL).
+        - You should setup your own tables for Login(MongoDB), User Profile(MySQL). 
+        - Register and Signup with Twilio, TMDB and other security related stuff and provide these details in the config file
+    
 ## Contributors
 - ASIF SHAIK
 

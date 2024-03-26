@@ -2,10 +2,10 @@ import mysql from 'mysql';
 import { config } from '../config.js';
 
 const db = mysql.createConnection({
-  host: '',
-  user: '',
-  password: '',
-  database: ''
+  host: config.mySQLDatabase.host,
+  user: config.mySQLDatabase.user,
+  password: config.mySQLDatabase.password,
+  database: config.mySQLDatabase.database
 });
 
 db.connect((err) => {

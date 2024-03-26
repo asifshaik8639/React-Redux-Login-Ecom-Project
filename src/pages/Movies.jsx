@@ -78,7 +78,7 @@ const Movies = () => {
             sendinputTextVal={(searchTextVal) => onSearchTextChangeHandler(searchTextVal.trim())}
         />
         <div className='flabel-container align-center-cls'>
-            <h4>Movie Lists </h4>
+            <h3>Movie Lists </h3>
             {
                 Object.keys(MOVIELIST).map((item, index)=> {
                     return  <div key={`flabel`+index} 
@@ -112,7 +112,7 @@ const Movies = () => {
                 <div key='filter-data' className='flabel-container align-items-center'>
                     {
                         (moviesResponseList?.map((item, index)=> {
-                            return  <div className='flex-item-cls movie-item-cls'
+                            return  <div className='movie-item-cls'
                                         key={`${index}flex-item`} 
                                         onClick={(e) => selectedMovieOnClickHandler(e, item)}>
                                         {
