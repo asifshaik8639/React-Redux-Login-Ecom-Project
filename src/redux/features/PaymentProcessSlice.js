@@ -13,8 +13,8 @@ export const PaymentProcessSlice = createSlice({
     initialState,
     reducers: {
         createOrderSuccess: (state, action) => {
-            console.log('state in createOrderSuccess', state);
-            console.log('action in createOrderSuccess', action);
+            // console.log('state in createOrderSuccess', state);
+            // console.log('action in createOrderSuccess', action);
             state.error = false;
             state.razorPaymentID = action.payload.data;
            // state.orderedProductsList = action.payload.products;

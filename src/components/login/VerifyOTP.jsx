@@ -50,9 +50,9 @@ const VerifyOTP = ({ secret,
         && !verifyOTPError
         && !!verifyOTPResponse) {
 
-          console.log('verifyOTPLoading ', verifyOTPLoading);
-          console.log('verifyOTPError ', verifyOTPError);
-          console.log('verifyOTPResponse ', verifyOTPResponse);
+          // console.log('verifyOTPLoading ', verifyOTPLoading);
+          // console.log('verifyOTPError ', verifyOTPError);
+          // console.log('verifyOTPResponse ', verifyOTPResponse);
 
           if(verifyOTPResponse?.isValid) {
             console.log('OTP Verified successfully and navigating to home page');

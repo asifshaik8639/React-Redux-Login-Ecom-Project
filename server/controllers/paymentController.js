@@ -11,31 +11,33 @@ const razorpay = new Razorpay({
 
 
 const createOrder = async (req, res) => {
-
-  const { totalCartAmount, selectedCurrency } = req.body;
+    const { totalCartAmount, selectedCurrency } = req.body;
 
     const options = {
-        amount: totalCartAmount, // Amount in paise (1000 paise = ₹10)
-        currency: selectedCurrency,
-        receipt: 'order_rcptid_11',
-        payment_capture: 1 // Auto capture payment after successful payment
-      };
-    
-      try {
-        const order = await razorpay.orders.create(options);
-        console.log('order details from RAZOR PAY SUCCESSFULL:', order);
-        res.json(order);
-      } catch (error) {
-        res.status(500).json({ error: error.message });
-      }
+      amount: totalCartAmount, // Amount in paise (1000 paise = ₹10)
+      currency: selectedCurrency,
+      receipt: config.razorPaymentGateway.order_reciept_id,
+      payment_capture: 1 // Auto capture payment after successful payment
+    };
+
+    try {
+      const order = await razorpay.orders.create(options);
+      console.log('order details from RAZOR PAY SUCCESSFULL:', order);
+      res.json(order);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
 };
 
 const insertCustomerOrderandPaymentDetails = async ( customerOrderandPaymentDoc ) => {
   try {
     const resClient =  mongoClient.getMongoClient();
     // Connect to the "test" database and access its "customer_order_and_payment_details" collection
-    const database =  resClient.db("test");
-    const collection =  database.collection("customer_order_and_payment_details");
+
+    const dbName =  config.database.name;
+    const payment_collectionName = config.database.cust_order_payment_details;
+    const database =  resClient.db(dbName);
+    const collection =  database.collection(payment_collectionName);
 
     const document = customerOrderandPaymentDoc;
     // Insert the defined document into the "customer_order_and_payment_details" collection
@@ -52,9 +54,9 @@ const paymentNotificationWebhook = async (req, res) => {
     const { body } = req;
     const payload = JSON.stringify(req.body);
     const signature = req.get('x-razorpay-signature');
-    const webhook_secret = '';
+    const webhook_secret = config.razorPaymentGateway.web_hook_secret;// to read from config file
 
-    // console.log('payload from razor pay => ',payload );
+    // console.log('WEB_HOOK_SECRET in paymentNotificationWebhook => ', webhook_secret);
     // console.log('signature =>', signature);
     // console.log('req.headers =>' , req.headers); 
   

@@ -7,11 +7,11 @@ import speakeasy from 'speakeasy';
 import QRCode from 'qrcode';
 
 const app = express();
-const port = 3001;
+const port = 3007;
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-    origin: 'http://127.0.0.1:5173', // Add your allowed origin(s)
+    origin: 'http://54.91.251.198:5173', // Add your allowed origin(s)
     credentials: false // If you're using credentials (cookies, headers, etc.)
   }));
 
@@ -69,6 +69,6 @@ app.post('/verify-otp', (req, res) => {
   res.json({ isValid });
 });
 
-app.listen(3001, '127.0.0.1', 'localhost', () => {
-    console.log(`OTP SMS Server is running on http://127.0.0.1:${port}`);
+app.listen(3007, '54.91.251.198', 'localhost', () => {
+    console.log(`OTP SMS Server is running on http://54.91.251.198:${port}`);
   });

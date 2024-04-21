@@ -10,8 +10,6 @@ const isValidOTPNumber = (number) => {
     return /^\d+$/.test(number) && number.length >= 6;
 };
 
-
-
 const isValidEmailID = (inputValue) => {
     // Add your custom validation logic here
      // Basic validation: Check if the input matches the email pattern

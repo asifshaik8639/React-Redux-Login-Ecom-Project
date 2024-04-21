@@ -18,8 +18,8 @@ export const loginEmailSlice = createSlice({
             state.data = null;
         },
         loginEmailSuccess: (state, action) => {
-            console.log('state in loginEmailSuccess', state);
-            console.log('action in loginEmailSuccess', action);
+            // console.log('state in loginEmailSuccess', state);
+            // console.log('action in loginEmailSuccess', action);
             state.loading = false;
             state.error = false;
             state.data = action.payload;

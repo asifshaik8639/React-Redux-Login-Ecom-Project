@@ -17,7 +17,7 @@ export const verifyOTPSlice = createSlice({
             state.data = null;
         },
         verifyOTPSuccess: (state, action) => {
-            console.log('state in verifyOTPSuccess', state);
+            // console.log('state in verifyOTPSuccess', state);
             console.log('action in verifyOTPSuccess', action);
             state.loading = false;
             state.error = false;

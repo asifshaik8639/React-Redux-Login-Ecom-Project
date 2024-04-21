@@ -110,7 +110,7 @@ const Home = () => {
 
 
   const onCategoryFilterHandler = (event) => {
-    console.log(event.target);
+    // console.log(event.target);
     let categorySelected = event.target.textContent || event.currentTarget.textContent || '';
     debounceSearchFunc('category', categorySelected);
     setCurrentPage(1);
@@ -161,9 +161,9 @@ const Home = () => {
   }
 
   if(Array.isArray(data) && data.length > 0) {
-    console.log('onPagination offset', offset);
-    console.log('onPagination pageSize', pageSize);
-    console.log('onPagination current', data);
+    // console.log('onPagination offset', offset);
+    // console.log('onPagination pageSize', pageSize);
+    // console.log('onPagination current', data);
     let paginationResult = data.slice();
     console.log('onPagination data', paginationResult.slice(offset, currentPage * pageSize));
     data = paginationResult.slice(offset, currentPage * pageSize);

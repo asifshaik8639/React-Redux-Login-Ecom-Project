@@ -4,7 +4,7 @@ const dbMongooseConnect = async () => {
 
     await mongoose.connect(config.database.mongo_connection_Url);
     // User model
-    const MongooseUser = mongoose.model('Sample_Test_Collection', {
+    const MongooseUser = mongoose.model(config.database.collectionName, {
         name: { type: String },
         age: { type: Number }
     });

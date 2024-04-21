@@ -17,8 +17,8 @@ export const loginOTPSlice = createSlice({
             state.data = null;
         },
         loginOTPSuccess: (state, action) => {
-            console.log('state in loginOTPSuccess', state);
-            console.log('action in loginOTPSuccess', action);
+            // console.log('state in loginOTPSuccess', state);
+            // console.log('action in loginOTPSuccess', action);
             state.loading = false;
             state.error = false;
             state.data = action.payload;

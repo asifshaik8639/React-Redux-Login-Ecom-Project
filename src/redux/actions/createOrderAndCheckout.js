@@ -13,7 +13,7 @@ export const createOrderAndCheckout = (totalCartAmount) => {
   return async (dispatch) => {
     try {
       
-      const response = await axios.post('http://127.0.0.1:3001/payment/create-order', {
+      const response = await axios.post('http://54.91.251.198:3007/payment/create-order', {
         totalCartAmount,
         selectedCurrency: PAYMENT_IN_CURRENCY
       });

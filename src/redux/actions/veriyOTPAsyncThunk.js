@@ -11,8 +11,8 @@ export const veriyOTPAsyncThunk = (secret, otp) => {
     try {
 
       console.log('in  veriyOTP actions with otp => ', otp);
-      console.log('in  veriyOTP actions with secret => ', secret);
-      const response = await axios.post('http://localhost:3001/auth/verify-otp', { secret, otp });
+      // console.log('in  veriyOTP actions with secret => ', secret);
+      const response = await axios.post('http://54.91.251.198:3007/auth/verify-otp', { secret, otp });
       console.log('response from veriyOTP actions => ', response);
       dispatch(verifyOTPSuccess(response?.data));
     } catch (error) {

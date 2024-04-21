@@ -89,7 +89,7 @@ function Login() {
     const isValidNumber = Validations.isValidPhoneNumber(mobileNumber);
 
     if(isValidNumber) {
-      console.log('before dispatch in handleGenerateOTP');
+      // console.log('before dispatch in handleGenerateOTP');
         dispatch(sendOTPWithTwilio());
     } else {
       setIsMobileNumberValid(false);

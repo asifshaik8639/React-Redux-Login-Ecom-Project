@@ -8,7 +8,7 @@ const client = twilio(config.twilio.accountSid, config.twilio.authToken);
 const verifyOTP = async (req, res) => {
   try {
       const { secret, otp } = req.body;
-      console.log('value of secret in verifying OTP', secret);
+      // console.log('value of secret in verifying OTP', secret);
       console.log('value of otp in verifying OTP', otp);
       const isValid = speakeasy.totp.verify({ secret, encoding: 'base32',window: 1, token: otp.trim() });
       console.log('server respone after verifying OTP', isValid);

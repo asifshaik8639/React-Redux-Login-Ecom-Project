@@ -9,22 +9,23 @@ import { mongoClient } from '../utils/mongoClient.js';
 
 const mongoDBConnect = async () => {
   try {
-
     const resClient =  mongoClient.getMongoClient();
     // Connect to the "insertDB" database and access its "haiku" collection
-    const database =  resClient.db("test");
-    const collection =  database.collection("sample_test_collections");
+    const dbName = config.database.name;  
+    const collectionName = config.database.collectionName;
+    const database =  resClient.db(dbName);
+    const collection =  database.collection(collectionName);
 
     // Create a document to insert
     const doc = {
-      title: "",
-      username: "",
-      password: ""
+      title: config.loginDoc.title,
+      username: config.loginDoc.username,
+      password: config.loginDoc.password
     }
-    // Insert the defined document into the "haiku" collection
+    // Insert the defined document into the "sample test" collection
     const result = await collection.insertOne(doc);
     // Print the ID of the inserted document
-    console.log(`A document was inserted with the _id asif: ${result.insertedId}`);
+    console.log(`A document was inserted with the _id : ${result.insertedId}`);
   } finally {
      // Close the MongoDB client connection
     await client.close();
@@ -35,15 +36,15 @@ const verifyandGetUserCredentials = async (username) => {
     try {
       const mongoDBClient =  mongoClient.getMongoClient();
 
-      const DBName =  config.database.name;
+      const dbName =  config.database.name;
+      const collectionName = config.database.collectionName;
       // Get the database and collection on which to run the operation
-      const database = mongoDBClient.db(DBName);
-      const mongoCollection = database.collection("sample_test_collections");
-      // Query for a movie that has the title 'The Room'
+      const database = mongoDBClient.db(dbName);
+      const mongoCollection = database.collection(collectionName);
 
       console.log('username entered is => ',username);
 
-      const query = { title: "LoginHashTest", username: username };
+      const query = { title: config.loginDoc.hash_test_title, username: username };
       const options = {
         // Include _id,  `title`, username and `hashPassword` fields in the returned document
         projection: { _id: 1, title: 1, username: 1, hashPassword:1 },
@@ -71,20 +72,23 @@ const createUserWithHashSalt = async(username, password) => {
     const hash = await bcrypt.hash(password, salt);
 
     const resClient =  mongoClient.getMongoClient();
-    // Connect to the "insertDB" database and access its "haiku" collection
-    const database =  resClient.db("test");
-    const collection =  database.collection("sample_test_collections");
+
+    const dbName =  config.database.name;
+    const collectionName = config.database.collectionName;
+
+    const database =  resClient.db(dbName);
+    const collection =  database.collection(collectionName);
 
     // Create a document to insert with the hashed password and salt
     const doc = {
-      title: "LoginTest",
+      title: config.loginDoc.title,
       username: username,
       hashPassword: hash
     }
     // Insert the defined document into the "haiku" collection
     const result = await collection.insertOne(doc);
     // Print the ID of the inserted document
-    console.log(`A document was inserted with the _id asif: ${result.insertedId}`);
+    console.log(`A document was inserted with the _id : ${result.insertedId}`);
     console.log('User created with hash password successfully!');
   } catch (error) {
     console.error('Error:', error);
