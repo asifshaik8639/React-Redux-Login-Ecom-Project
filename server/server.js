@@ -1,4 +1,5 @@
 import express from 'express';
+import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { authRoutes } from './routes/authRoutes.js';
@@ -18,9 +19,11 @@ const PORT = config.server.port ||  3007;
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'http://54.91.251.198:5173', // Add your allowed origin(s)
+    origin: 'http://13.127.246.209:5173', // Add your allowed origin(s)
     credentials: true // If you're using credentials (cookies, headers, etc.)
 }));
+// Use Morgan to log requests in 'combined' format
+app.use(morgan('combined'));
 
 // Connect routes
 app.use('/auth', authRoutes.router);
@@ -29,7 +32,7 @@ app.use('/user', userRoutes.router);
 
 app.use('/payment', paymentRoutes.router);
 
-app.listen(PORT, '0.0.0.0', '54.91.251.198', 'localhost',  () => {
+app.listen(PORT, '0.0.0.0', '13.127.246.209', 'localhost',  () => {
     console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
 

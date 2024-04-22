@@ -1,6 +1,6 @@
 {
   "name": "react-ecom-project",
-  "proxy": "http://54.91.251.198:3007",
+  "proxy": "http://13.127.246.209:3007",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -30,6 +30,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "6.3.0",
     "mongoose": "^8.2.0",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.9.2",
     "node": "^21.6.2",
