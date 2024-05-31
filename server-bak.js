@@ -11,7 +11,7 @@ const port = 3007;
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-    origin: 'http://13.127.246.209:5173', // Add your allowed origin(s)
+    origin: 'http://127.0.0.1:5173', // Add your allowed origin(s)
     credentials: false // If you're using credentials (cookies, headers, etc.)
   }));
 
@@ -69,6 +69,6 @@ app.post('/verify-otp', (req, res) => {
   res.json({ isValid });
 });
 
-app.listen(3007, '13.127.246.209', 'localhost', () => {
-    console.log(`OTP SMS Server is running on http://13.127.246.209:${port}`);
+app.listen(3007, '127.0.0.1', 'localhost', () => {
+    console.log(`OTP SMS Server is running on http://127.0.0.1:${port}`);
   });

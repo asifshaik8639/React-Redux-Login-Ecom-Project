@@ -9,7 +9,7 @@ export const authEmailCredentials = (username, password) => {
   return async (dispatch) => {
     try {
           dispatch(loading());
-          const response = await axios.post('http://13.127.246.209:3007/auth/login', {
+          const response = await axios.post('http://127.0.0.1:3007/auth/login', {
             username,
             password,
           });

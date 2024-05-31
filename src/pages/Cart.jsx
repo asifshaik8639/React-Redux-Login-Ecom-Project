@@ -1,19 +1,22 @@
-import React, { useState, useEffect, useInsertionEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {setSelectedPage} from '../redux/features/commonSlice';
 import {removeCartItem, resetCartState} from '../redux/features/ProductsCartSlice';
 import {setOrderedProductAfterPaymentSuccess,
-  resetPaymentProcessState} from '../redux/features/PaymentProcessSlice';
+        resetPaymentProcessState} from '../redux/features/PaymentProcessSlice';
 import {createOrderAndCheckout} from '../redux/actions/createOrderAndCheckout';
-
+import VoiceCommand from '../components/VoiceCommand';
+import { VOICE_COMMAND_NOT_MATCH } from '../utils/Constants';
 import '../App.css';
 
 const Cart = () => {
 
     const [productCartList, setProductCartList] = useState([]);
+    const [isListening, setIsListening] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const voiceCommandref = useRef(null);
     const script = document.createElement('script');
 
     const { cartListsOfProducts } = useSelector((state) => state.productsCart);
@@ -91,6 +94,14 @@ const Cart = () => {
       dispatch(setSelectedPage("Home"));
     };
 
+    const onCheckoutVoiceCommandHandler = (event) => {
+      onGoToCheckoutClickHandler();
+    };
+
+    const onGoToShoppingVoiceCommandHandler  = (event) => {
+      onContinueShoppingClickHandler();
+    };
+
     const calculateTotalAmount = () => {
       const totalCartAmount =  cartListsOfProducts?.reduce((total, item) => total + (item?.price * 80), 0);
       return totalCartAmount;
@@ -99,6 +110,34 @@ const Cart = () => {
     const onRemoveItemHandler = (event, selectedProduct) => {
       dispatch(removeCartItem(selectedProduct?.id));
     };
+
+    const onVoiceCommandHandler = (command) => {
+      if (command.includes('checkout') || command.includes('check out') || command.includes('check')) {
+          console.log('In cart ***** checkout flow ');
+        // const item = command.replace('add', '').trim();
+        onGoToCheckoutClickHandler();
+      } else if (command.includes('shopping')) {
+          console.log('in cart **** Go to shopping flow ');
+        // const item = command.replace('remove', '').trim();
+        onContinueShoppingClickHandler();
+      } else {
+        const speechSynthesis = window.speechSynthesis;
+        const utterance = new SpeechSynthesisUtterance(VOICE_COMMAND_NOT_MATCH);
+  
+        // Optional: Set properties on the utterance
+        utterance.pitch = 1; // Default is 1
+        utterance.rate = 1;  // Default is 1
+        utterance.volume = 1; // Default is 1
+  
+        // Speak the text
+        speechSynthesis.speak(utterance);
+      }
+    };
+
+    const startListening  = (event) => {
+      voiceCommandref.current.startListening();
+    };
+
 
     return (
       <>
@@ -144,17 +183,30 @@ const Cart = () => {
         <p className='cart-items-total-amount-cls'>Cart Items Total Amount: Rs.{calculateTotalAmount()}</p>
       }
       {
-           Array.isArray(cartListsOfProducts) && cartListsOfProducts.length > 0 && 
-           <div className='prod-details-btns-Container'>
+          Array.isArray(cartListsOfProducts) && cartListsOfProducts.length > 0 && 
+          <div className='prod-details-btns-Container prod-details-btns-margin-container'>
 
-                <button onClick={(e) => onGoToCheckoutClickHandler(e)} 
-                >Go to Checkout</button>
+              <button onClick={(e) => onGoToCheckoutClickHandler(e)} 
+              >Go to Checkout </button>
 
-                <button onClick={(e) => onContinueShoppingClickHandler(e)} 
-                >Continue Shopping</button>
+              <button onClick={(e) => onContinueShoppingClickHandler(e)} 
+              >Continue Shopping</button>
 
-            </div> 
-        }
+              <VoiceCommand
+                  ref={voiceCommandref} 
+                  onhandleVoiceCommand={(command) => onVoiceCommandHandler(command)}
+                  setIsListening={setIsListening}
+              >
+                <div className='prod-details-btns-Container'>
+                  <button  
+                            onClick={() => startListening()}>
+                          {isListening ? 'Listening...' : 'Start Voice Command'}
+                  </button>
+                </div>
+              </VoiceCommand>
+
+          </div> 
+      }
 
       </>
   

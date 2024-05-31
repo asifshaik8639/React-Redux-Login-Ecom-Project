@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isLoggedIn: false,
   theme: 'light',
+  globalSearchText: '',
   selectedPage: null,
   userProfileData: null,
   userProfileError: false // user profile is common hence moved here
@@ -30,6 +31,9 @@ const commonSlice = createSlice({
     setUserProfileError: (state, action) => {
       state.userProfileError = true;
     },
+    setGlobalSearchText: (state, action) => {
+      state.globalSearchText = action.payload;
+    },
     resetCommonState: (state) => {
       // Reset to the initial state
       return { ...state, ...initialState };
@@ -41,7 +45,8 @@ export const { setLoggedIn,
               setTheme, 
               setSelectedPage,
               setUserProfile,
-              setUserProfileError, 
+              setUserProfileError,
+              setGlobalSearchText,
               resetCommonState } = commonSlice.actions;
 export const selectCommonState = (state) => state.common;
 export default commonSlice.reducer;

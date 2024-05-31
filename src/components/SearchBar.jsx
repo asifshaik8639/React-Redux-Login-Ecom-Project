@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Icon from '@material-ui/core/Icon';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
@@ -8,9 +9,12 @@ import Button from '@mui/material/Button';
 
 function SearchBar({ sendinputTextVal, 
                      onSortHandler,
-                     onMenuClickHandler }) {
+                     onMenuClickHandler
+                    }) {
 
  const [inputText, setInputText] = useState('');
+
+ const { globalSearchText } = useSelector((state) => state.common);
 
  const onInputSearchHandler = (event) => {
    // console.log('value from onInputSearchHandler', event.target.value );
@@ -18,6 +22,13 @@ function SearchBar({ sendinputTextVal,
     setInputText(inputValue);
     sendinputTextVal(inputValue);
  }
+
+  useEffect(()=> {
+    console.log('searchText in useEffect ******', globalSearchText);
+    setInputText(globalSearchText);
+    sendinputTextVal(globalSearchText);
+
+  }, [globalSearchText]);
 
   return (
 

@@ -473,6 +473,14 @@ body {
   margin: 10px;
   padding: 10px;
 }
+
+.prod-details-btns-margin-container button {
+  margin: 10px;
+  padding: 10px 2px;
+}
+
+
+
 .prod-details-btns-Container button:hover {
   border-color: #646cff;
   transform: scale(1.2);

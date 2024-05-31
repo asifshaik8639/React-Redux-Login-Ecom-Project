@@ -11,7 +11,9 @@ import WIP from './WIP';
 import Movies from './Movies';
 import ProductDetails from './ProductDetails';
 import Checkout from './Checkout';
+import Chat from '../components/Chat';
 import {setSelectedPage} from '../redux/features/commonSlice';
+import { setGlobalSearchText } from '../redux/features/commonSlice';
 
 const HomeComponent = () => <Home/>;
 const NotFoundComponent = () => <NotFound/>;
@@ -22,6 +24,7 @@ const WIPComponent = () => <WIP/>;
 const MoviesComponent = () => <Movies/>;
 const ProductDetailsComponent = () => <ProductDetails/>;
 const CheckoutComponent = () => <Checkout/>;
+const ChatComponent = () => <Chat/>;
 
 const componentMap = {
     Home: HomeComponent,
@@ -32,7 +35,8 @@ const componentMap = {
     Movies: MoviesComponent,
     WIP: WIPComponent,
     prodDetails: ProductDetailsComponent,
-    Checkout: CheckoutComponent
+    Checkout: CheckoutComponent,
+    Chat: ChatComponent
 };
 
 
@@ -59,11 +63,11 @@ function DynamicParentContainer() {
 
  const onIconClickHandler = (event) => {
     console.log(' onIconClickHandler ComponentToLoad => ', event.currentTarget.name);
+    if(event.currentTarget.name === 'Home') {
+        dispatch(setGlobalSearchText(''));
+    }
     const pageName = event?.currentTarget?.name || 'Home';
     dispatch(setSelectedPage(pageName));
-    // const ComponentToLoad = componentMap[componentKey];
-    // const ComponentToLoad = componentMap[componentKey];
-    // setSelectedComponent(<ComponentToLoad />);
   }
 
   console.log('value of isSideBarOpen',isSideBarOpen);

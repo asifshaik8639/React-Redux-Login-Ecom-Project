@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import SearchBar from '../components/SearchBar';
 import debounce from '../utils/debounce';
 import FilterLabel from '../components/FilterLabel';
+import { useDispatch, useSelector } from 'react-redux';
 import { Skeleton } from '@mui/material';
 import { usePaginationContext } from '../context/PaginationContextWrapper';
 import Button from '@mui/material/Button';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CardsContainer from '../components/CardsContainer';
+import { setGlobalSearchText } from '../redux/features/commonSlice';
+import { commonUtils } from '../utils/commonUtils';
 
 const Home = () => {
 
@@ -27,17 +30,19 @@ const Home = () => {
         isSideBarOpen,
         setSideBarOpen  } = usePaginationContext();
 
+    const dispatch = useDispatch();
+
     const onSortHandler = (bool) => {
         setInputSearchText('');
         console.log('in onSortHandler', bool);
         let result = resultSubsequentRef.current.slice();
         setData([]);
         if(bool) {
-            const sortedProductsAsc = sortArrayObj(true,result, 'title');
+            const sortedProductsAsc = commonUtils.sortArrayObj(true,result, 'title');
             resultDataRef.current = sortedProductsAsc;
             setData(resultDataRef.current);
         } else {
-            const sortedProductsDesc = sortArrayObj(false,result, 'title');
+            const sortedProductsDesc = commonUtils.sortArrayObj(false,result, 'title');
             resultDataRef.current = sortedProductsDesc;
             setData(resultDataRef.current);
         }
@@ -75,12 +80,17 @@ const Home = () => {
     }
   },[]);
 
-  const filterDataBasedOnSearchInput = (prop = 'title', searchText = '') => {
+  const filterDataBasedOnSearchInput = (prop = 'title', searchText = '', fromFilterLabel = false) => {
 
     try {
         setData([]);
+        if(fromFilterLabel) {
+            dispatch(setGlobalSearchText(''));
+        }
+        
         if(searchText === 'All') {
             searchText = '';
+            console.log('searchText ****', searchText);
         }
         let result = resultSubsequentRef.current.slice();
 
@@ -88,6 +98,7 @@ const Home = () => {
             return item[prop].toLowerCase().includes(searchText);
         });
         resultDataRef.current = filteredDataonTitle;
+        
         setData(resultDataRef.current);
     } catch(error) {
         console.error('error in filterDataBasedOnSearchInput = > ', error);
@@ -112,41 +123,11 @@ const Home = () => {
   const onCategoryFilterHandler = (event) => {
     // console.log(event.target);
     let categorySelected = event.target.textContent || event.currentTarget.textContent || '';
-    debounceSearchFunc('category', categorySelected);
+    debounceSearchFunc('category', categorySelected, true);
     setCurrentPage(1);
     setCurrentOffSet(0);
     setInputSearchText('');
   }
-
-  const sortArrayObj = (IsAsc, itemsArray, prop) =>  {
-    let sortedResultArray = [];
-    // sort by name
-    if(Array.isArray(itemsArray) && itemsArray.length > 0) {
-      sortedResultArray = itemsArray.slice().sort((a, b) => {
-          let nameA = a[prop];
-          let nameB = b[prop];
-          if(IsAsc) {
-               nameA = nameA.toUpperCase(); // ignore upper and lowercase
-               nameB = nameB.toUpperCase(); // ignore upper and lowercase
-          } else {
-               nameA = nameB.toUpperCase(); // ignore upper and lowercase
-               nameB = nameA.toUpperCase(); // ignore upper and lowercase
-          }
-          if (nameA < nameB) {
-          return -1;
-          }
-          if (nameA > nameB) {
-          return 1;
-          }
-      
-          // names must be equal
-          return 0;
-      });
-    }  else {
-      return new Error("Invalid Array to sort");
-    }
-    return sortedResultArray;
-}
 
   const onPaginationPrevious = (event) => {
     console.log('onPaginationPrevious', offset-pageSize)
@@ -171,8 +152,9 @@ const Home = () => {
 
   return (
     <>
-        <SearchBar onSortHandler={onSortHandler}
-                onMenuClickHandler={onMenuClickHandler}
+        <SearchBar 
+            onSortHandler={onSortHandler}
+            onMenuClickHandler={onMenuClickHandler}
             sendinputTextVal={(searchTextVal) => setInputSearchText(searchTextVal.trim())}
         />
         <FilterLabel data={resultSubsequentRef?.current} 

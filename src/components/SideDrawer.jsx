@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import Link from '@material-ui/core/Link';
 import ContactsIcon from '@mui/icons-material/Contacts';
 // import HomeIcon from '@mui/icons-material/Home';
@@ -18,28 +18,24 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
-
+import ChatIcon from '@mui/icons-material/Chat';
+import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
+import VoiceCommand from '../components/VoiceCommand';
+import { commonUtils } from '../utils/commonUtils';
+import { setGlobalSearchText } from '../redux/features/commonSlice';
 
 function SideDrawer({onIconClickHandler}) {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const voiceCommandref = useRef(null);
 
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const [dialogOpen, setDialogOpen] = React.useState(false);
 
+  const { isLoggedIn, globalSearchText } = useSelector((state) => state.common);
 
-
-  const { isLoggedIn } = useSelector((state) => state.common);
-
-   const { totalCartItemsCount } = useSelector((state) => state.productsCart);
-
-//    useEffect(() => {
-//      if(totalCartItemsCount > 0) {
-//         setCartItemsCount(totalCartItemsCount);
-//      } 
-
-//    },[totalCartItemsCount]);
+  const { totalCartItemsCount } = useSelector((state) => state.productsCart);
 
   const onLogoutDialogOpenClickHandler = (event) => {
     //resetting all the state to the default state 
@@ -56,6 +52,30 @@ function SideDrawer({onIconClickHandler}) {
     setDialogOpen(false);
   };
 
+  const handleContextMenu = (event) => {
+    event.preventDefault();
+  }
+
+  const startListening = (event) => {
+    voiceCommandref.current.startListening();
+  }
+
+  const onVoiceCommandHandler = (command) => {
+     if(!!command && command !== '') {
+        dispatch(setGlobalSearchText(command.toLowerCase().replace(/[^\w\s]/gi, '')));
+        commonUtils.voiceCommandUtterance(command);
+     }
+  };
+
+  const setIsListening = () => {
+    
+  };
+
+  const playSound = (soundElement) => {
+    soundElement.currentTime = 0; // Reset to start
+    soundElement.play();
+  };
+
   useEffect(() => {
     console.count('onLogoutClickHandler');
     
@@ -63,6 +83,7 @@ function SideDrawer({onIconClickHandler}) {
         console.log('onLogoutClickHandler from common');
         navigate('/login');
     }
+
   },[isLoggedIn]);
 
   return (
@@ -73,9 +94,7 @@ function SideDrawer({onIconClickHandler}) {
         </div>
         <div className='side-drawer-item'>
             <Link name="Home" onClick={(e) => onIconClickHandler(e) } >
-           
                 <StoreIcon fontSize='large' />
-                
                 <label htmlFor=""> Shopping</label> 
             </Link>
         </div>
@@ -109,6 +128,30 @@ function SideDrawer({onIconClickHandler}) {
             <Link name="User"  onClick={(e) => onIconClickHandler(e) }>
                 <ContactsIcon fontSize='large'/>
                 <label htmlFor=""> User Profile</label>
+            </Link>
+        </div>
+
+        <div className='side-drawer-item' 
+                onContextMenu={(e) => handleContextMenu(e)}>
+
+              <VoiceCommand
+                  ref={voiceCommandref} 
+                  onhandleVoiceCommand={(command) => onVoiceCommandHandler(command)}
+                  setIsListening={setIsListening} >
+
+                  <Link name="VoiceSearch"
+                      onClick={() => startListening()}  >
+                      <RecordVoiceOverIcon fontSize='large'/>
+                      <label htmlFor=""> Voice Search</label>
+                  </Link>
+              </VoiceCommand>
+
+        </div>
+
+        <div className='side-drawer-item'>
+            <Link name="Chat"  onClick={(e) => onIconClickHandler(e) }>
+                <ChatIcon fontSize='large'/>
+                <label htmlFor=""> Chat</label>
             </Link>
         </div>
 

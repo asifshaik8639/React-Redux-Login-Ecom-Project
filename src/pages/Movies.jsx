@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Skeleton } from '@mui/material';
 import {AUTHTOKEN, MOVIELIST, TMDBURL, TMDBIMAGEBASEPATH, OPTIONS} from '../utils/Constants';
 import MovieTrailer from '../components/movies/MovieTrailer';
@@ -6,9 +7,8 @@ import ModalContainer from '../components/movies/ModalContainer';
 import SearchBar from '../components/SearchBar';
 import { usePaginationContext } from '../context/PaginationContextWrapper';
 import Avatar from '@mui/material/Avatar';
+import { setGlobalSearchText } from '../redux/features/commonSlice';
 import { deepOrange, deepPurple, lightGreen, indigo } from '@mui/material/colors';
-
-
 
 const Movies = () => {
 
@@ -16,6 +16,7 @@ const Movies = () => {
   const [moviesResponseList, setMoviesResponseList] = useState([]);
   const [selectedMovieID, setSelectedMovieID] = useState(null);
   const [searchText, setSearchText] = useState(null);
+  const dispatch = useDispatch();
 
   let {
     isSideBarOpen,
@@ -23,6 +24,7 @@ const Movies = () => {
 
 
   const onMovieCategoryFilterHandler = (event) => {
+    dispatch(setGlobalSearchText(''));
     setSelectedOption(MOVIELIST[event.target.textContent]);
   };
 

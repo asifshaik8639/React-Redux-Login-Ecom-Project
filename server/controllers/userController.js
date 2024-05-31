@@ -43,4 +43,4 @@ import db from '../database/mySQLClientConnect.js';
 
 export const userController = {
     getUserProfileData
-  };
+};
