@@ -5,7 +5,7 @@ import {
 
 export const sendOTPWithTwilio = () => {
   return async (dispatch) => {
-        await fetch('http://127.0.0.1:3007/auth/send-otp-with-twilio', {
+        await fetch('http://35.154.88.150:3007/auth/send-otp-with-twilio', {
             method: 'POST',
             headers: {
             'content-type': 'application/json'

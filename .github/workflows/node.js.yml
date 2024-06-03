@@ -28,5 +28,14 @@ jobs:
     - run: |
         touch .env
         echo "${{secrets.PROD_ENV_VAR}}" > .env
-    - run: pm2 restart app
+    - name: Run npm run dev with PM2
+      run: pm2 restart "dev-app"
+
+    - name: Run server.js with PM2
+      run: |
+        cd server
+        pm2 restart "server-app"
+    
+    - name: Display PM2 list
+      run: pm2 list
     

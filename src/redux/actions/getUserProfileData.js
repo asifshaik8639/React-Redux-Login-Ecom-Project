@@ -5,7 +5,7 @@ export const getUserProfileData = (id) => {
   return async (dispatch) => {
     try {
 
-        const response = await fetch(`http://127.0.0.1:3007/user/userprofile/${id}`);
+        const response = await fetch(`http://35.154.88.150:3007/user/userprofile/${id}`);
         const result = await response.json();
         console.log('client response from fetchUserData => ', result.data);
         dispatch(setUserProfile(result.data));

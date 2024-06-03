@@ -20,7 +20,7 @@ const PORT = config.server.port ||  3007;
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'http://127.0.0.1:5173', // Add your allowed origin(s)
+    origin: 'http://35.154.88.150:5173', // Add your allowed origin(s)
     credentials: true // If you're using credentials (cookies, headers, etc.)
 }));
 // Use Morgan to log requests in 'combined' format
@@ -35,7 +35,7 @@ app.use('/payment', paymentRoutes.router);
 
 app.use('/voice-search', voiceSearchRoutes.router);
 
-app.listen(PORT, '0.0.0.0', '127.0.0.1', 'localhost',  () => {
+app.listen(PORT, '0.0.0.0', '35.154.88.150', 'localhost',  () => {
     console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
 

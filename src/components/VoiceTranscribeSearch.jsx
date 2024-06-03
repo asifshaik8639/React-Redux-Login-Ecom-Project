@@ -26,7 +26,7 @@ const VoiceTranscribeSearch = forwardRef(function VoiceTranscribeSearch(props, r
     let interval;
     if(!!jobName && jobName !== '') {
       interval = setInterval(async () => {
-        const response = await axios.get(`http://127.0.0.1:3007/voice-search/get-transcription/${jobName}`, {
+        const response = await axios.get(`http://35.154.88.150:3007/voice-search/get-transcription/${jobName}`, {
           headers: {
             'Accept': 'application/json'
           }
@@ -54,7 +54,7 @@ const VoiceTranscribeSearch = forwardRef(function VoiceTranscribeSearch(props, r
     const formData = new FormData();
     formData.append('file', audioBlob);
 
-    const response = await fetch('http://127.0.0.1:3007/voice-search/upload-audio', {
+    const response = await fetch('http://35.154.88.150:3007/voice-search/upload-audio', {
       method: 'POST',
       body: formData,
     });
