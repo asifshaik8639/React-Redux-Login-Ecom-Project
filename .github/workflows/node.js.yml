@@ -25,7 +25,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: sudo npm ci --force
     - run: |
         touch .env
         echo "${{secrets.PROD_ENV_VAR}}" > .env
