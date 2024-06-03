@@ -29,12 +29,24 @@ jobs:
     - run: |
         touch .env
         echo "${{secrets.PROD_ENV_VAR}}" > .env
-    - name: Run npm run dev with PM2
-      run: pm2 restart "dev-app"
-    - name: Run server.js with PM2
+    - name: Install PM2
+      run: sudo npm install -g pm2
+    - name: Start or Restart npm run dev with PM2
       run: |
-        cd server
-        pm2 restart "server-app"
+        if pm2 list | grep -q "dev-app"; then
+          sudo pm2 restart dev-app
+        else
+          sudo pm2 start npm --name "dev-app" -- run dev
+        fi
+
+    - name: Start or Restart server.js with PM2
+      run: |
+        if pm2 list | grep -q "server-app"; then
+          sudo pm2 restart server-app
+        else
+          sudo pm2 start node server.js --name "server-app" --cwd ./server
+        fi
+
     - name: Display PM2 list
-      run: pm2 list
+      run: sudo pm2 list
     
