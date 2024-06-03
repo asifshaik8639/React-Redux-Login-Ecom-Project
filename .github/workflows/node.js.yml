@@ -19,6 +19,8 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    - name: Ensure runner has write permissions
+      run: sudo chown -R $USER:$USER /home/ubuntu/app/actions-runner/_work/React-Redux-Login-Ecom-Project
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -49,4 +51,3 @@ jobs:
 
     - name: Display PM2 list
       run: sudo pm2 list
-    
