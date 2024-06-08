@@ -54,7 +54,7 @@ jobs:
         fi
 
     - name: Run server.js or server-app with PM2
-      run: sudo pm2 start node server.js --name "server-app"
+      run: sudo pm2 start node server.js --name "server-app" --cwd ./server
     
     - name: Display PM2 list
       run: sudo pm2 list
