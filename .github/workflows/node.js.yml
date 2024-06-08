@@ -35,6 +35,7 @@ jobs:
       run: sudo npm install -g pm2
     - name: Kill existing dev-app process
       run: |
+        sudo pm2 save --force
         if sudo pm2 list | grep "dev-app"; then
           sudo pm2 stop dev-app
           sudo pm2 delete dev-app
@@ -46,6 +47,7 @@ jobs:
     - name: Kill existing server-app process
       run: |
         cd server
+        sudo pm2 save --force
         if sudo pm2 list | grep "server-app"; then
           sudo pm2 stop server-app
           sudo pm2 delete server-app
