@@ -54,7 +54,11 @@ jobs:
         fi
 
     - name: Run server.js or server-app with PM2
-      run: sudo pm2 start node server.js --name "server-app" --cwd ./server
+      run: |
+        echo "Before displaying pwd command"
+        sudo pwd
+        cd server
+        sudo pm2 start node server.js --name "server-app"
     
     - name: Display PM2 list
       run: sudo pm2 list
