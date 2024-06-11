@@ -1,3 +1,5 @@
+import https from 'https';
+import fs from 'fs';
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
@@ -14,6 +16,11 @@ if (loadEnv?.result?.error) {
 } else {
   console.log('.env file loaded successfully in server');
 }
+
+const options = {
+  key: fs.readFileSync('/etc/nginx/ssl/selfsigned.key'),
+  cert: fs.readFileSync('/etc/nginx/ssl/selfsigned.crt')
+};
 
 const app = express();
 const PORT = config.server.port ||  3007;
@@ -35,8 +42,8 @@ app.use('/api/v1/payment', paymentRoutes.router);
 
 app.use('/api/v1/voice-search', voiceSearchRoutes.router);
 
-app.listen(PORT, '0.0.0.0', '35.154.88.150', '127.0.0.1', 'localhost',  () => {
-    console.log(`Server is running on http://0.0.0.0:${PORT}`);
+https.createServer(options, app).listen(PORT, '0.0.0.0', '35.154.88.150', '127.0.0.1', 'localhost', () => {
+  console.log(`API server running on https://0.0.0.0:${PORT}`);
 });
 
 

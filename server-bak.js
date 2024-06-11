@@ -11,7 +11,7 @@ const port = 3007;
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-    origin: 'http://35.154.88.150:5173', // Add your allowed origin(s)
+    origin: 'https://35.154.88.150:5173', // Add your allowed origin(s)
     credentials: false // If you're using credentials (cookies, headers, etc.)
   }));
 
@@ -70,5 +70,5 @@ app.post('/verify-otp', (req, res) => {
 });
 
 app.listen(3007, '35.154.88.150', 'localhost', () => {
-    console.log(`OTP SMS Server is running on http://35.154.88.150:${port}`);
+    console.log(`OTP SMS Server is running on https://35.154.88.150:${port}`);
   });
