@@ -27,7 +27,7 @@ const PORT = config.server.port ||  3007;
 
 app.use(bodyParser.json());
 app.use(cors({
-    origin: ['https://35.154.88.150:5173','https://35.154.88.150:3007'], // Add your allowed origin(s)
+    origin: ['https://35.154.88.150', 'https://35.154.88.150:5173','https://35.154.88.150:3007'], // Add your allowed origin(s)
     credentials: true // If you're using credentials (cookies, headers, etc.)
 }));
 // Use Morgan to log requests in 'combined' format
