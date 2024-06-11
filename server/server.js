@@ -27,15 +27,15 @@ app.use(cors({
 app.use(morgan('combined'));
 
 // Connect routes
-app.use('/auth', authRoutes.router);
+app.use('/api/v1/auth', authRoutes.router);
 
-app.use('/user', userRoutes.router);
+app.use('/api/v1/user', userRoutes.router);
 
-app.use('/payment', paymentRoutes.router);
+app.use('/api/v1/payment', paymentRoutes.router);
 
-app.use('/voice-search', voiceSearchRoutes.router);
+app.use('/api/v1/voice-search', voiceSearchRoutes.router);
 
-app.listen(PORT, '0.0.0.0', '35.154.88.150', 'localhost',  () => {
+app.listen(PORT, '0.0.0.0', '35.154.88.150', '127.0.0.1', 'localhost',  () => {
     console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
 

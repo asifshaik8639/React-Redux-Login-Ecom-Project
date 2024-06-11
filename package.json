@@ -1,6 +1,6 @@
 {
   "name": "react-ecom-project",
-  "proxy": "http://35.154.88.150:3007",
+  "proxy": "https://35.154.88.150:3007",
   "private": true,
   "version": "0.0.0",
   "type": "module",
