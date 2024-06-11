@@ -47,7 +47,7 @@ const verifyandGetUserCredentials = async (username) => {
       const query = { title: config.loginDoc.hash_test_title, username: username };
       const options = {
         // Include _id,  `title`, username and `hashPassword` fields in the returned document
-        projection: { _id: 1, title: 1, username: 1, hashPassword:1 },
+        projection: { _id: 1, title: 1, username: 1, hashPassword:1, firstname: 1 },
       };
       // Execute query
       const userCredentials = await mongoCollection.findOne(query, options);

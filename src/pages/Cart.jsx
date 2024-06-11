@@ -25,7 +25,7 @@ const Cart = () => {
 
     const { data: loginEmailData } = useSelector((state) => state?.loginEmail);
 
-    console.log("Login email first name test pass == = >", loginEmailData?.firstname);
+    console.log("Login email data test pass = >", loginEmailData?.userCredentials?.firstname);
 
 
     useEffect(() => {
@@ -127,7 +127,8 @@ const Cart = () => {
         onContinueShoppingClickHandler();
       } else {
         const speechSynthesis = window.speechSynthesis;
-        const sentenceToSpeak = `Hello ${loginEmailData?.firstname},  ${VOICE_COMMAND_NOT_MATCH}`;
+        const userName = loginEmailData?.userCredentials?.firstname || 'User';
+        const sentenceToSpeak = `Hello ${userName}  ${VOICE_COMMAND_NOT_MATCH}`;
         const utterance = new SpeechSynthesisUtterance(sentenceToSpeak);
   
         // Optional: Set properties on the utterance
