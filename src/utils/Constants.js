@@ -26,3 +26,7 @@ export const PAYMENT_PREFILL_DATA = {
 
 export const VOICE_COMMAND_NOT_MATCH = 'voice command not recognized. Please say Go to Shopping or Go to Checkout';
 
+export const VOICE_COMMAND_CHECKOUT = 'Going to Checkout';
+
+export const VOICE_COMMAND_SHOPPING = 'Going to Shopping';
+

@@ -7,7 +7,7 @@ import {setOrderedProductAfterPaymentSuccess,
         resetPaymentProcessState} from '../redux/features/PaymentProcessSlice';
 import {createOrderAndCheckout} from '../redux/actions/createOrderAndCheckout';
 import VoiceCommand from '../components/VoiceCommand';
-import { VOICE_COMMAND_NOT_MATCH } from '../utils/Constants';
+import { VOICE_COMMAND_NOT_MATCH, VOICE_COMMAND_CHECKOUT, VOICE_COMMAND_SHOPPING  } from '../utils/Constants';
 import '../App.css';
 
 const Cart = () => {
@@ -116,20 +116,27 @@ const Cart = () => {
       dispatch(removeCartItem(selectedProduct?.id));
     };
 
+    
     const onVoiceCommandHandler = (command) => {
+      const speechSynthesis = window.speechSynthesis;
+      const userName = loginEmailData?.userCredentials?.firstname || 'User';
+      let utterance = '';
+      let sentenceToSpeak = '';
       if (command.includes('checkout') || command.includes('check out') || command.includes('check')) {
           console.log('In cart ***** checkout flow ');
         // const item = command.replace('add', '').trim();
+        sentenceToSpeak = `Hello ${userName}  ${VOICE_COMMAND_CHECKOUT}`;
+        utterance = new SpeechSynthesisUtterance(sentenceToSpeak);
         onGoToCheckoutClickHandler();
       } else if (command.includes('shopping')) {
           console.log('in cart **** Go to shopping flow ');
         // const item = command.replace('remove', '').trim();
+        sentenceToSpeak = `Hello ${userName}  ${VOICE_COMMAND_SHOPPING}`;
+        utterance = new SpeechSynthesisUtterance(sentenceToSpeak);
         onContinueShoppingClickHandler();
       } else {
-        const speechSynthesis = window.speechSynthesis;
-        const userName = loginEmailData?.userCredentials?.firstname || 'User';
-        const sentenceToSpeak = `Hello ${userName}  ${VOICE_COMMAND_NOT_MATCH}`;
-        const utterance = new SpeechSynthesisUtterance(sentenceToSpeak);
+        sentenceToSpeak = `Hello ${userName}  ${VOICE_COMMAND_NOT_MATCH}`;
+        utterance = new SpeechSynthesisUtterance(sentenceToSpeak);
   
         // Optional: Set properties on the utterance
         utterance.pitch = 1; // Default is 1
