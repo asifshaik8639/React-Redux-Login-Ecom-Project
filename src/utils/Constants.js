@@ -24,5 +24,5 @@ export const PAYMENT_PREFILL_DATA = {
   EMAIL: 'asif.testshaik@gmail.com'
 }
 
-export const VOICE_COMMAND_NOT_MATCH = 'Hello Asif, voice command not recognized. Please say Go to Shopping or Go to Checkout';
+export const VOICE_COMMAND_NOT_MATCH = 'voice command not recognized. Please say Go to Shopping or Go to Checkout';
 

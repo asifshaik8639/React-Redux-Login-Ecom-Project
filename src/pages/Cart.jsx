@@ -23,6 +23,11 @@ const Cart = () => {
 
     const { razorPaymentID } = useSelector((state) => state?.paymentProcess);
 
+    const { data: loginEmailData } = useSelector((state) => state?.loginEmail);
+
+    console.log("Login email first name test pass == = >", loginEmailData?.firstname);
+
+
     useEffect(() => {
       if(Array.isArray(cartListsOfProducts) && cartListsOfProducts.length > 0) {
           setProductCartList(cartListsOfProducts);
@@ -122,7 +127,8 @@ const Cart = () => {
         onContinueShoppingClickHandler();
       } else {
         const speechSynthesis = window.speechSynthesis;
-        const utterance = new SpeechSynthesisUtterance(VOICE_COMMAND_NOT_MATCH);
+        const sentenceToSpeak = `Hello ${loginEmailData?.firstname},  ${VOICE_COMMAND_NOT_MATCH}`;
+        const utterance = new SpeechSynthesisUtterance(sentenceToSpeak);
   
         // Optional: Set properties on the utterance
         utterance.pitch = 1; // Default is 1
