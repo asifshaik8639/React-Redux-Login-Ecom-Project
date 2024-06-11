@@ -39,6 +39,7 @@ jobs:
         if sudo pm2 list | grep "dev-app"; then
           sudo pm2 stop dev-app
           sudo pm2 delete dev-app
+          sudo pm2 save
         fi
 
     - name: Run npm run dev or dev-app with PM2
@@ -51,11 +52,12 @@ jobs:
         if sudo pm2 list | grep "server-app"; then
           sudo pm2 stop server-app
           sudo pm2 delete server-app
+          sudo pm2 save
         fi
 
     - name: Run server.js or server-app with PM2
       run: |
-        echo "Before displaying pwd command"
+        echo "Before displaying prevent working directory command"
         sudo pwd
         cd server
         sudo pm2 start node server.js --name "server-app"
