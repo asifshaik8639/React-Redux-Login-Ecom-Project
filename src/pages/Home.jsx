@@ -60,13 +60,13 @@ const Home = () => {
 
     const getProducts = () => {
         try {
-            fetch('https://fakestoreapi.com/products')
+            fetch('https://fakestoreapi.in/api/products')
             .then(res=>res.json())
             .then((response)=> {
-               
-                    resultDataRef.current = response;
-                    resultSubsequentRef.current = response;
-                    setData(response);
+                    let products = response.products;
+                    resultDataRef.current = products;
+                    resultSubsequentRef.current = products;
+                    setData(products);
                 
             });
         }catch(error) {

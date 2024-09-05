@@ -147,6 +147,11 @@ body {
     text-align: center;
   }
 
+  .flabel-container.home-label-container {
+    display: flex;
+    flex-direction: row;
+    overflow: unset;
+  }
 
 
 }

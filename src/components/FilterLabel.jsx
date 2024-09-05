@@ -16,7 +16,7 @@ function FilterLabel({data, onCategoryFilterHandler}) {
     <div className='category-container'>
         {
             Array.isArray(uniqueCategoryData) && uniqueCategoryData.length > 0 ? 
-            <div className='flabel-container'>
+            <div className='flabel-container home-label-container'>
                 <h3>Categories</h3>
                 <div className='filter-label-cls all-filter-lbl-cls' onClick={(e)=> onCategoryFilterHandler(e)}>All</div>
                 {
