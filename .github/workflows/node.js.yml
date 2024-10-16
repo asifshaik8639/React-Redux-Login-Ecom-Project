@@ -56,7 +56,7 @@ jobs:
 
     - name: Run server.js or server-app with PM2
       run: |
-        echo "Before displaying prevent working directory command test"
+        echo "Before displaying prevent working directory command test and running the servers"
         sudo pwd
         cd server
         sudo pm2 start node server.js --name "server-app"
